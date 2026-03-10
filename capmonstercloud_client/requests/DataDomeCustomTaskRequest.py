@@ -1,15 +1,17 @@
 from typing import Dict, Union
-from pydantic import Field, validator
+from pydantic import Field, validator, model_validator
 from .CustomTaskRequestBase import CustomTaskRequestBase
 
 class DataDomeCustomTaskRequest(CustomTaskRequestBase):
     captchaClass: str = Field(default='DataDome')
     metadata : Dict[str, str]
-    
+
     @validator('metadata')
     def validate_metadata(cls, value):
         if value.get('datadomeCookie') is None:
             raise TypeError(f'Expect that datadomeCookie will be defined.')
+        if value.get('datadomeVersion') is not None and not isinstance(value.get('datadomeVersion'), str):
+            raise TypeError(f'Expected datadomeVersion to be str')
         if value.get('captchaUrl') and value.get('htmlPageBase64'):
             raise TypeError(f'Expected only one of [captchaUrl, htmlPageBase64]')
         elif value.get('captchaUrl'):
@@ -18,22 +20,24 @@ class DataDomeCustomTaskRequest(CustomTaskRequestBase):
             return {i: value[i] for i in value if i != 'captchaUrl'}
         else:
             raise TypeError(f'Expected one of [captchaUrl, htmlPageBase64]')
-        if value.get('datadomeVersion') and not isinstance(value.get('datadomeVersion'), str):
-            raise TypeError(f'Expected datadomeVersion to be str')
 
-    
+    @model_validator(mode='before')
+    def validate_datadome_proxy(cls, values):
+        proxy = values.get('proxy')
+        if proxy is None:
+            raise RuntimeError(f'You are required to use your own proxies.')
+        return values
+
     def getTaskDict(self) -> Dict[str, Union[str, int, bool]]:
         task = {}
         task['type'] = self.type
         task['class'] = self.captchaClass
         task['websiteURL'] = self.websiteUrl
-        if self.proxy:
-            task['proxyType'] = self.proxy.proxyType
-            task['proxyAddress'] = self.proxy.proxyAddress
-            task['proxyPort'] = self.proxy.proxyPort
-            task['proxyLogin'] = self.proxy.proxyLogin
-            task['proxyPassword'] = self.proxy.proxyPassword
-        task['domains'] = self.domains
+        task['proxyType'] = self.proxy.proxyType
+        task['proxyAddress'] = self.proxy.proxyAddress
+        task['proxyPort'] = self.proxy.proxyPort
+        task['proxyLogin'] = self.proxy.proxyLogin
+        task['proxyPassword'] = self.proxy.proxyPassword
         task['metadata'] = self.metadata
         if self.userAgent is not None:
             task['userAgent'] = self.userAgent

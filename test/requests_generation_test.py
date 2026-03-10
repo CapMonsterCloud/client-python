@@ -15,6 +15,7 @@ class RequestGenerationTests(unittest.TestCase):
             "recaptchaDataSValue",
             "userAgent",
             "cookies",
+            "isInvisible",
         ]
         rc2_no_proxy_type = "NoCaptchaTask"
         request = requests.RecaptchaV2Request(
@@ -23,6 +24,7 @@ class RequestGenerationTests(unittest.TestCase):
             dataSValue="sdfa",
             userAgent="fasdf",
             cookies="asdfsdf",
+            isInvisible=True,
         )
         task = request.getTaskDict()
         for key in default_keys:
@@ -49,6 +51,7 @@ class RequestGenerationTests(unittest.TestCase):
             dataSValue="data s value",
             userAgent="user agent",
             cookies="cookies",
+            isInvisible=True,
             proxy=proxy,
         )
         proxy_task = proxy_request.getTaskDict()
@@ -67,7 +70,7 @@ class RequestGenerationTests(unittest.TestCase):
         request = requests.RecaptchaV3ProxylessRequest(
             websiteUrl="some_url",
             websiteKey="some_key",
-            min_score=0.2,
+            minScore=0.2,
             pageAction="asdfsfd",
         )
         task = request.getTaskDict()
@@ -91,12 +94,16 @@ class RequestGenerationTests(unittest.TestCase):
             "websiteKey",
             "enterprisePayload",
             "apiDomain",
+            "userAgent",
+            "cookies",
         ]
         request = requests.RecaptchaV2EnterpriseRequest(
             websiteUrl="some_url",
             websiteKey="some_key",
             enterprisePayload="payload",
             apiDomain="asdfasdf",
+            userAgent="user agent",
+            cookies="cookies",
         )
         task = request.getTaskDict()
         for key in default_keys:
@@ -122,6 +129,8 @@ class RequestGenerationTests(unittest.TestCase):
             websiteKey="some_key",
             enterprisePayload="payload",
             apiDomain="asdfasdf",
+            userAgent="user agent",
+            cookies="cookies",
             proxy=proxy,
         )
 

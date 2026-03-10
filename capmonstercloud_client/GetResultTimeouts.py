@@ -56,6 +56,15 @@ def getImpervaTimeouts() -> GetResultTimeouts:
 def getAltchaTimeouts() -> GetResultTimeouts:
     return GetResultTimeouts(1, 0, 1, 50)
 
+def getCastleTimeouts() -> GetResultTimeouts:
+    return GetResultTimeouts(1, 0, 1, 60)
+
+def getTspdTimeouts() -> GetResultTimeouts:
+    return GetResultTimeouts(1, 0, 1, 60)
+
+def getHuntTimeouts() -> GetResultTimeouts:
+    return GetResultTimeouts(1, 0, 1, 60)
+
 def getCITTimeouts() -> GetResultTimeouts:
     return GetResultTimeouts(0.35, 0, 0.2, 10)
 

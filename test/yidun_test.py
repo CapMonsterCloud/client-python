@@ -41,6 +41,33 @@ class YidunRequestTest(unittest.TestCase):
 
         self.assertEqual(request_dict["type"], "YidunTask")
 
+    def testOptionalFields(self):
+        request = YidunRequest(
+            websiteUrl=self.websiteUrlExample,
+            websiteKey=self.websiteKeyExample,
+            userAgent=self.userAgentExample,
+            yidunGetLib="https://example.com/yidun.js",
+            yidunApiServerSubdomain="api.example.com",
+            challenge="challenge_value",
+            hcg="hash_value",
+            hct=12345,
+        )
+        request_dict = request.getTaskDict()
+        self.assertEqual(request_dict["yidunGetLib"], "https://example.com/yidun.js")
+        self.assertEqual(request_dict["yidunApiServerSubdomain"], "api.example.com")
+        self.assertEqual(request_dict["challenge"], "challenge_value")
+        self.assertEqual(request_dict["hcg"], "hash_value")
+        self.assertEqual(request_dict["hct"], 12345)
+
+    def testOptionalFieldsNotSentWhenNone(self):
+        request = YidunRequest(
+            websiteUrl=self.websiteUrlExample,
+            websiteKey=self.websiteKeyExample,
+        )
+        request_dict = request.getTaskDict()
+        for field in ["userAgent", "yidunGetLib", "yidunApiServerSubdomain", "challenge", "hcg", "hct"]:
+            self.assertNotIn(field, request_dict)
+
 
 if __name__ == "__main__":
     unittest.main()

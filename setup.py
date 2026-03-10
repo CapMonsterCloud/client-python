@@ -5,7 +5,7 @@ if sys.version_info < (3,):
     sys.exit(-1)
 
 from pathlib import Path
-from pkg_resources import parse_requirements
+#from pkg_resources import parse_requirements
 from setuptools import setup
 
 
@@ -15,8 +15,8 @@ EMAIL = 'andrey.ilyin@zennolab.com'
 AUTHOR = 'Andrey Ilyin'
 with open('capmonstercloud_client/version.txt', 'r') as f:
     VERSION = f.read()
-with open("requirements.txt", "rt") as requirements_txt:
-    REQUIRED = [str(requirement) for requirement in parse_requirements(requirements_txt)]
+with open("requirements.txt") as f:
+    REQUIRED = [line.strip() for line in f if line.strip() and not line.startswith("#")]
 URL='https://github.com/ZennoLab/capmonstercloud-client-python'
 
 this_directory = Path(__file__).parent

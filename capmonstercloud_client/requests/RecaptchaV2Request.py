@@ -11,8 +11,9 @@ class RecaptchaV2Request(BaseRequestWithProxy):
     dataSValue: Optional[str] = Field(default=None)
     userAgent: Optional[str] = Field(default=None)
     cookies: Optional[str] = Field(default=None)
+    isInvisible: Optional[bool] = Field(default=None)
 
-    def getTaskDict(self) -> Dict[str, Union[str, int]]:
+    def getTaskDict(self) -> Dict[str, Union[str, int, bool]]:
         task = {}
         task['type'] = self.type
         task['websiteURL'] = self.websiteUrl
@@ -26,12 +27,15 @@ class RecaptchaV2Request(BaseRequestWithProxy):
 
         if self.dataSValue is not None:
            task['recaptchaDataSValue'] = self.dataSValue
-        
+
         if self.userAgent is not None:
             task['userAgent'] = self.userAgent
 
         if self.cookies is not None:
             task['cookies'] = self.cookies
+
+        if self.isInvisible is not None:
+            task['isInvisible'] = self.isInvisible
 
         return task
     
