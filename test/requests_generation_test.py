@@ -86,6 +86,34 @@ class RequestGenerationTests(unittest.TestCase):
             msg=f"Task type of ReCaptchaV3 not equal to {rc3_type}",
         )
 
+        # validate_min_score: valid boundary values
+        for valid_score in [0.1, 0.5, 0.9]:
+            req = requests.RecaptchaV3ProxylessRequest(
+                websiteUrl="some_url",
+                websiteKey="some_key",
+                minScore=valid_score,
+            )
+            self.assertEqual(req.minScore, valid_score)
+
+        # validate_min_score: invalid values should raise ValueError
+        for invalid_score in [0.0, 0.09, 0.91, 1.0, -0.1, 2.0]:
+            with self.assertRaises(
+                ValueError,
+                msg=f"minScore={invalid_score} should raise ValueError",
+            ):
+                requests.RecaptchaV3ProxylessRequest(
+                    websiteUrl="some_url",
+                    websiteKey="some_key",
+                    minScore=invalid_score,
+                )
+
+        # validate_min_score: None should be accepted
+        req_none = requests.RecaptchaV3ProxylessRequest(
+            websiteUrl="some_url",
+            websiteKey="some_key",
+        )
+        self.assertIsNone(req_none.minScore)
+
     def test_rcv2_enterprise(self):
         rcv2e_type = "RecaptchaV2EnterpriseTask"
         default_keys = [
