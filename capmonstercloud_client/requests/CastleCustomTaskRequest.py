@@ -11,17 +11,17 @@ class CastleCustomTaskRequest(CustomTaskRequestBase):
     @validator('metadata')
     def validate_metadata(cls, value):
         if value.get('wUrl') is None:
-            raise TypeError(f'Expect that wUrl will be defined.')
+            raise TypeError(f'Expected that wUrl is defined.')
         else:
             if not isinstance(value.get('wUrl'), str):
-                raise TypeError(f'Expect that wUrl will be str.')
+                raise TypeError(f'Expected that wUrl is str.')
         if value.get('swUrl') is None:
-            raise TypeError(f'Expect that swUrl will be defined.')
+            raise TypeError(f'Expected that swUrl is defined.')
         else:
             if not isinstance(value.get('swUrl'), str):
-                raise TypeError(f'Expect that swUrl will be str.')
+                raise TypeError(f'Expected that swUrl is str.')
         if value.get('count') is not None and not isinstance(value.get('count'), int):
-            raise TypeError(f'Expect that count will be int.')
+            raise TypeError(f'Expected that count is int.')
         return value
 
     def getTaskDict(self) -> Dict[str, Union[str, int, bool]]:
