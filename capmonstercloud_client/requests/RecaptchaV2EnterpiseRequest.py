@@ -10,7 +10,9 @@ class RecaptchaV2EnterpriseRequest(BaseRequestWithProxy):
     enterprisePayload: Optional[str] = Field(default=None)
     apiDomain: Optional[str] = Field(default=None)
     pageAction: Optional[str] = Field(default=None)
-    
+    userAgent: Optional[str] = Field(default=None)
+    cookies: Optional[str] = Field(default=None)
+
     def getTaskDict(self) -> Dict[str, Union[str, int]]:
         task = {}
         task['type'] = self.type
@@ -28,4 +30,8 @@ class RecaptchaV2EnterpriseRequest(BaseRequestWithProxy):
             task['apiDomain'] = self.apiDomain
         if self.pageAction is not None:
             task['pageAction'] = self.pageAction
+        if self.userAgent is not None:
+            task['userAgent'] = self.userAgent
+        if self.cookies is not None:
+            task['cookies'] = self.cookies
         return task

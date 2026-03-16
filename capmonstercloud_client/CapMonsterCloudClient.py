@@ -16,9 +16,9 @@ from .utils import parseVersion
 _instance_config = (
     ((RecaptchaV2Request,), getRecaptchaV2Timeouts),
     ((RecaptchaV2EnterpriseRequest,), getRecaptchaV2EnterpriseTimeouts),
-    ((RecaptchaV3ProxylessRequest), getRecaptchaV3Timeouts),
-    ((RecaptchaV3EnterpriseRequest), getRecaptchaV3Timeouts),
-    ((ImageToTextRequest), getImage2TextTimeouts),
+    ((RecaptchaV3ProxylessRequest,), getRecaptchaV3Timeouts),
+    ((RecaptchaV3EnterpriseRequest,), getRecaptchaV3Timeouts),
+    ((ImageToTextRequest,), getImage2TextTimeouts),
     ((FuncaptchaRequest,), getFuncaptchaTimeouts),
     ((HcaptchaRequest,), getHcaptchaTimeouts),
     ((GeetestRequest,), getGeetestTimeouts),
@@ -31,12 +31,15 @@ _instance_config = (
     ((AmazonWafRequest,), getAmazonWafTimeouts),
     ((BinanceTaskRequest,), getBinanceTimeouts),
     ((ImpervaCustomTaskRequest,), getImpervaTimeouts),
-    ((RecognitionComplexImageTaskRequest), getCITTimeouts),
-    ((MTCaptchaRequest), getImage2TextTimeouts),
-    ((YidunRequest), getYidunTimeouts),
-    ((TemuCustomTaskRequest), getTemuTimeouts),
-    ((ProsopoTaskRequest), getProsopoTimeouts),
-    ((AltchaCustomTaskRequest), getAltchaTimeouts),
+    ((RecognitionComplexImageTaskRequest,), getCITTimeouts),
+    ((MTCaptchaRequest,), getImage2TextTimeouts),
+    ((YidunRequest,), getYidunTimeouts),
+    ((TemuCustomTaskRequest,), getTemuTimeouts),
+    ((ProsopoTaskRequest,), getProsopoTimeouts),
+    ((AltchaCustomTaskRequest,), getAltchaTimeouts),
+    ((CastleCustomTaskRequest,), getCastleTimeouts),
+    ((TspdCustomTaskRequest,), getTspdTimeouts),
+    ((HuntCustomTaskRequest,), getHuntTimeouts),
 )
 
 
@@ -100,7 +103,10 @@ class CapMonsterClient:
                                                  YidunRequest,
                                                  TemuCustomTaskRequest,
                                                  ProsopoTaskRequest,
-                                                 AltchaCustomTaskRequest],
+                                                 AltchaCustomTaskRequest,
+                                                 CastleCustomTaskRequest,
+                                                 TspdCustomTaskRequest,
+                                                 HuntCustomTaskRequest],
                             ) -> Dict[str, str]:
         '''
         Non-blocking method for captcha solving. 
@@ -148,6 +154,7 @@ class CapMonsterClient:
             raise GetTaskError(f'[{getTaskResponse.get("errorCode")}] ' \
                                f'{getTaskResponse.get("errorDescription")}.')
         timer = RequestController(timeout=timeouts.timeout)
+        timer.run()
         await asyncio.sleep(timeouts.firstRequestDelay)
         result = CaptchaResult()
         while not timer.cancel:
@@ -165,13 +172,10 @@ class CapMonsterClient:
             elif getResultResponse.get('status') == 'ready':
                 timer.stop()
                 result.solution = getResultResponse.get('solution')
-                break
-        
-        if result != None:
-            return result.solution
-        else:
-            raise TimeoutError('Failed to get a solution within the maximum ' \
-                               f'response waiting interval: {timeouts.timeout:0.1f} sec.')
+                return result.solution
+
+        raise TimeoutError('Failed to get a solution within the maximum ' \
+                           f'response waiting interval: {timeouts.timeout:0.1f} sec.')
         
 
     async def _getTaskResult(self, task_id: str) -> Dict[str, Union[int, str, None]]:

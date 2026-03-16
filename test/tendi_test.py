@@ -42,6 +42,32 @@ class TenDiCustomTaskRequestTest(unittest.TestCase):
         self.assertEqual(request_dict["class"], "TenDI")
         self.assertEqual(request_dict["type"], "CustomTask")
 
+    def testMetadataOptional(self):
+        request = TenDiCustomTaskRequest(
+            websiteUrl=TenDiCustomTaskRequestTest.websiteUrlExample,
+            websiteKey=TenDiCustomTaskRequestTest.websiteKeyExample,
+        )
+        request_dict = request.getTaskDict()
+        self.assertNotIn("metadata", request_dict)
+
+    def testMetadataWithCaptchaUrl(self):
+        request = TenDiCustomTaskRequest(
+            websiteUrl=TenDiCustomTaskRequestTest.websiteUrlExample,
+            websiteKey=TenDiCustomTaskRequestTest.websiteKeyExample,
+            metadata={"captchaUrl": "https://example.com/TCaptcha.js"},
+        )
+        request_dict = request.getTaskDict()
+        self.assertEqual(request_dict["metadata"]["captchaUrl"], "https://example.com/TCaptcha.js")
+
+    def testMetadataInvalidKey(self):
+        self.assertRaises(
+            TypeError,
+            TenDiCustomTaskRequest,
+            websiteUrl=TenDiCustomTaskRequestTest.websiteUrlExample,
+            websiteKey=TenDiCustomTaskRequestTest.websiteKeyExample,
+            metadata={"invalidKey": "value"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

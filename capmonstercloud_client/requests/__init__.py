@@ -24,13 +24,16 @@ from .YidunRequest import YidunRequest
 from .ProsopoTaskRequest import ProsopoTaskRequest
 from .TemuCustomTaskRequest import TemuCustomTaskRequest
 from .AltchaCustomTaskRequest import AltchaCustomTaskRequest
+from .CastleCustomTaskRequest import CastleCustomTaskRequest
+from .TspdCustomTaskRequest import TspdCustomTaskRequest
+from .HuntCustomTaskRequest import HuntCustomTaskRequest
 from .proxy_info import ProxyInfo, ClientProxyInfo
 
 
-REQUESTS = ['RecaptchaV2EnterpiseRequest', 'RecaptchaV2Request', 'RecaptchaV3ProxylessRequest', 'RecaptchaComplexImageTaskRequest', 'RecaptchaV3EnterpriseRequest'
+REQUESTS = ['RecaptchaV2EnterpiseRequest', 'RecaptchaV2Request', 'RecaptchaV3ProxylessRequest', 'RecaptchaComplexImageTaskRequest', 'RecaptchaV3EnterpriseRequest',
             'ImageToTextRequest', 
             'FuncaptchaRequest', 'FunCaptchaComplexImageTaskRequest',
-            'HcaptchaRequest', 'HcaptchaComplexImageTaskRequest'
+            'HcaptchaRequest', 'HcaptchaComplexImageTaskRequest',
             'GeetestRequest',
             'DataDomeCustomTaskRequest',
             'TenDiCustomTaskRequest',
@@ -44,5 +47,8 @@ REQUESTS = ['RecaptchaV2EnterpiseRequest', 'RecaptchaV2Request', 'RecaptchaV3Pro
             'YidunRequest',
             'ProsopoTaskRequest',
             'TemuCustomTaskRequest',
-            'AltchaCustomTaskRequest'
+            'AltchaCustomTaskRequest',
+            'CastleCustomTaskRequest',
+            'TspdCustomTaskRequest',
+            'HuntCustomTaskRequest'
             ]
