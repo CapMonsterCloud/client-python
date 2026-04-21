@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/capmonstercloudclient)](https://pypi.org/project/capmonstercloudclient/)
 
-Official Python client for creating CAPTCHA tasks and receiving solutions from the CapMonster Cloud API.
+Official Python SDK for the CapMonster Cloud API.
 
 ## Links
 
@@ -18,7 +18,7 @@ Official Python client for creating CAPTCHA tasks and receiving solutions from t
 python3 -m pip install capmonstercloudclient
 ```
 
-## Minimal example
+## Minimal async example
 
 ```python
 import asyncio
