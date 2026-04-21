@@ -1,33 +1,47 @@
-# Zennolab.CapMonsterCloud.Client
+# CapMonster Cloud Python client
 
-Official python client library for [capmonster.cloud](https://capmonster.cloud/) captcha recognition service
+[![PyPI version](https://img.shields.io/pypi/v/capmonstercloudclient)](https://pypi.org/project/capmonstercloudclient/)
+
+Official Python client for creating CAPTCHA tasks and receiving solutions from the CapMonster Cloud API.
+
+## Links
+
+- Package: [capmonstercloudclient on PyPI](https://pypi.org/project/capmonstercloudclient/)
+- Documentation: [docs.capmonster.cloud](https://docs.capmonster.cloud/)
+- Dashboard / API key: [dash.capmonster.cloud](https://dash.capmonster.cloud/)
 
 ## Installation
 
-    python3 -m pip install capmonstercloudclient
+```bash
+python3 -m pip install capmonstercloudclient
+```
 
-## Usage
+## Minimal example
 
-***
-    import asyncio
+```python
+import asyncio
 
-    from capmonstercloudclient import CapMonsterClient, ClientOptions
-    from capmonstercloudclient.requests import RecaptchaV2ProxylessRequest
+from capmonstercloudclient import CapMonsterClient, ClientOptions
+from capmonstercloudclient.requests import RecaptchaV2ProxylessRequest
 
-    client_options = ClientOptions(api_key=<YOUR_API_KEY>)
-    cap_monster_client = CapMonsterClient(options=client_options)
+client_options = ClientOptions(api_key="<YOUR_API_KEY>")
+cap_monster_client = CapMonsterClient(options=client_options)
 
-    async def solve_captcha():
-        return await cap_monster_client.solve_captcha(recaptcha2request)
+recaptcha2request = RecaptchaV2ProxylessRequest(
+    websiteUrl="https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
+    websiteKey="6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
+)
 
-    recaptcha2request = RecaptchaV2ProxylessRequest(websiteUrl="https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
-                                                    websiteKey="6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd")
+async def solve_captcha():
+    return await cap_monster_client.solve_captcha(recaptcha2request)
 
-    responses = asyncio.run(solve_captcha())
-    print(responses)
-***
+response = asyncio.run(solve_captcha())
+print(response)
+```
 
-Supported captcha recognition requests:
+Supported task families include reCAPTCHA, GeeTest, Turnstile, image-to-text, and additional task types documented in the public docs.
+
+Supported request classes:
 
 - [GeeTestProxylessRequest](https://zenno.link/doc-geetest-en)
 - [GeeTestRequest](https://zenno.link/doc-geetest-proxy-en)
