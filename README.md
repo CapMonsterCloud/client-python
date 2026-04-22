@@ -25,12 +25,12 @@ Need to test before depositing? Contact support and we’ll add trial credits to
 import asyncio
 
 from capmonstercloudclient import CapMonsterClient, ClientOptions
-from capmonstercloudclient.requests import RecaptchaV2ProxylessRequest
+from capmonstercloudclient.requests import RecaptchaV2Request
 
 client_options = ClientOptions(api_key="<YOUR_API_KEY>")
 cap_monster_client = CapMonsterClient(options=client_options)
 
-recaptcha2request = RecaptchaV2ProxylessRequest(
+recaptcha2request = RecaptchaV2Request(
     websiteUrl="https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
     websiteKey="6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
 )
@@ -46,22 +46,28 @@ Supported task families include reCAPTCHA, GeeTest, Turnstile, image-to-text, an
 
 Supported request classes:
 
-- [GeeTestProxylessRequest](https://zenno.link/doc-geetest-en)
-- [GeeTestRequest](https://zenno.link/doc-geetest-proxy-en)
-- [ImageToTextRequest](https://zenno.link/doc-ImageToTextTask-en)
-- [RecaptchaV2ProxylessRequest](https://zenno.link/doc-recaptcha2-en)
-- [RecaptchaV2Request](https://zenno.link/doc-recaptcha2-proxy-en)
-- [RecaptchaV3ProxylessRequest](https://zenno.link/doc-recaptcha3-en)
-- [RecaptchaV2EnterpriseProxylessRequest](https://zenno.link/doc-recaptcha2e-en)
-- [RecaptchaV2EnterpriseRequest](https://zenno.link/doc-recaptcha2e-proxy-en)
-- [TurnstileProxylessRequest](https://zenno.link/doc-turnstile-en)
-- [TurnstileRequest](https://zenno.link/doc-turnstile-proxy-en)
-- [RecaptchaComplexImageTaskRequest](https://zenno.link/doc-complextask-rc-en)
-- [DataDomeCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/datadome)
-- [TenDiCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/tendi)
-- [BasiliskCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/Basilisk-task)
+- [AltchaCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/altcha-task)
 - [AmazonWafRequest](https://docs.capmonster.cloud/docs/captchas/amazon-task)
+- [BasiliskCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/Basilisk-task)
 - [BinanceTaskRequest](https://docs.capmonster.cloud/docs/captchas/binance)
-- [BinanceTaskProxylessRequest](https://docs.capmonster.cloud/docs/captchas/binance)
+- [CastleCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/castle-task)
+- [DataDomeCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/datadome)
+- [FuncaptchaRequest](https://docs.capmonster.cloud/docs/captchas/funcaptcha-task)
+- [FunCaptchaComplexImageTaskRequest](https://docs.capmonster.cloud/docs/captchas/ComplexImageTask-Recognition)
+- [GeetestRequest](https://docs.capmonster.cloud/docs/captchas/geetest-task)
+- [HuntCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/hunt-task)
+- [ImageToTextRequest](https://docs.capmonster.cloud/docs/captchas/image-to-text)
 - [ImpervaCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/incapsula)
-- [ImpervaCustomTaskProxylessRequest](https://docs.capmonster.cloud/docs/captchas/incapsula)
+- [MTCaptchaRequest](https://docs.capmonster.cloud/docs/captchas/mtcaptcha-task)
+- [ProsopoTaskRequest](https://docs.capmonster.cloud/docs/captchas/prosopo-task)
+- [RecognitionComplexImageTaskRequest](https://docs.capmonster.cloud/docs/captchas/ComplexImageTask-Recognition)
+- [RecaptchaComplexImageTaskRequest](https://docs.capmonster.cloud/docs/captchas/recaptcha-click)
+- [RecaptchaV2EnterpriseRequest](https://docs.capmonster.cloud/docs/captchas/recaptcha-v2-enterprise-task)
+- [RecaptchaV2Request](https://docs.capmonster.cloud/docs/captchas/no-captcha-task)
+- [RecaptchaV3EnterpriseRequest](https://docs.capmonster.cloud/docs/captchas/recaptcha-v3-enterprise-task)
+- [RecaptchaV3ProxylessRequest](https://docs.capmonster.cloud/docs/captchas/recaptcha-v3-task)
+- [TemuCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/temu-task)
+- [TenDiCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/tendi)
+- [TspdCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/tspd-task)
+- [TurnstileRequest](https://docs.capmonster.cloud/docs/captchas/turnstile-task)
+- [YidunRequest](https://docs.capmonster.cloud/docs/captchas/yidun-task)
