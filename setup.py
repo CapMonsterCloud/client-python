@@ -40,10 +40,9 @@ setup(
     python_requires='>=3.6',
     install_requires=REQUIRED,
     keywords="""
-                captcha 
+				captcha 
 				recaptcha
 				geetest
-				hcaptcha
 				funcaptcha
 				python3
 				python-library

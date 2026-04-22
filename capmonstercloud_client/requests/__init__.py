@@ -4,12 +4,10 @@ from .RecaptchaV2EnterpiseRequest import RecaptchaV2EnterpriseRequest
 from .RecaptchaV3ProxylessRequest import RecaptchaV3ProxylessRequest
 from .RecaptchaV3EnterpriseRequest import RecaptchaV3EnterpriseRequest
 from .RecaptchaComplexImageTask import RecaptchaComplexImageTaskRequest
-from .HcaptchaRequest import HcaptchaRequest
 from .FuncaptchaRequest import FuncaptchaRequest
 from .FuncaptchaComplexImageTask import FunCaptchaComplexImageTaskRequest
 from .GeetestRequest import GeetestRequest
 from .TurnstileRequest import TurnstileRequest
-from .HcaptchaComplexImageTask import HcaptchaComplexImageTaskRequest
 from .RecaptchaComplexImageTask import RecaptchaComplexImageTaskRequest
 from .baseRequest import BaseRequest
 from .DataDomeCustomTaskRequest import DataDomeCustomTaskRequest
@@ -33,7 +31,6 @@ from .proxy_info import ProxyInfo, ClientProxyInfo
 REQUESTS = ['RecaptchaV2EnterpiseRequest', 'RecaptchaV2Request', 'RecaptchaV3ProxylessRequest', 'RecaptchaComplexImageTaskRequest', 'RecaptchaV3EnterpriseRequest',
             'ImageToTextRequest', 
             'FuncaptchaRequest', 'FunCaptchaComplexImageTaskRequest',
-            'HcaptchaRequest', 'HcaptchaComplexImageTaskRequest',
             'GeetestRequest',
             'DataDomeCustomTaskRequest',
             'TenDiCustomTaskRequest',

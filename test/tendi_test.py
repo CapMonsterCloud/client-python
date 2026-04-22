@@ -50,7 +50,7 @@ class TenDiCustomTaskRequestTest(unittest.TestCase):
         request_dict = request.getTaskDict()
         self.assertNotIn("metadata", request_dict)
 
-    def testMetadataWithCaptchaUrl(self):
+    def testMetadataWithPageScriptUrl(self):
         request = TenDiCustomTaskRequest(
             websiteUrl=TenDiCustomTaskRequestTest.websiteUrlExample,
             websiteKey=TenDiCustomTaskRequestTest.websiteKeyExample,
