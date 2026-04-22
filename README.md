@@ -1,8 +1,9 @@
-# CapMonster Cloud Python client
+# CapMonster Cloud Python SDK
 
 [![PyPI version](https://img.shields.io/pypi/v/capmonstercloudclient)](https://pypi.org/project/capmonstercloudclient/)
 
 Official Python SDK for the CapMonster Cloud API.
+Use this package when you want to create tasks and retrieve solutions from Python applications or scripts.
 
 ## Links
 
@@ -10,13 +11,13 @@ Official Python SDK for the CapMonster Cloud API.
 - Documentation: [docs.capmonster.cloud](https://docs.capmonster.cloud/)
 - Dashboard / API key: [dash.capmonster.cloud](https://dash.capmonster.cloud/)
 
-💵 Want to test before depositing? Contact support and we’ll add trial credits to your account.
-
 ## Installation
 
 ```bash
 python3 -m pip install capmonstercloudclient
 ```
+
+Need to test before depositing? Contact support and we’ll add trial credits to your account.
 
 ## Minimal async example
 
