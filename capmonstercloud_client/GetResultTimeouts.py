@@ -96,3 +96,11 @@ def getProsopoTimeouts() -> GetResultTimeouts:
 
 def getTemuTimeouts() -> GetResultTimeouts:
     return GetResultTimeouts(1, 10, 3, 180)
+
+
+def getFriendlyCaptchaTimeouts() -> GetResultTimeouts:
+    return GetResultTimeouts(1, 0, 1, 180)
+
+
+def getAlibabaTimeouts() -> GetResultTimeouts:
+    return GetResultTimeouts(1, 0, 1, 180)
