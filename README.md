@@ -47,11 +47,13 @@ Supported task families include reCAPTCHA, GeeTest, Turnstile, image-to-text, an
 Supported request classes:
 
 - [AltchaCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/altcha-task)
+- [AlibabaCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/alibaba-task)
 - [AmazonWafRequest](https://docs.capmonster.cloud/docs/captchas/amazon-task)
 - [BasiliskCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/Basilisk-task)
 - [BinanceTaskRequest](https://docs.capmonster.cloud/docs/captchas/binance)
 - [CastleCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/castle-task)
 - [DataDomeCustomTaskRequest](https://docs.capmonster.cloud/docs/captchas/datadome)
+- [FriendlyCaptchaRequest](https://docs.capmonster.cloud/docs/captchas/friendly-task)
 - [FuncaptchaRequest](https://docs.capmonster.cloud/docs/captchas/funcaptcha-task)
 - [FunCaptchaComplexImageTaskRequest](https://docs.capmonster.cloud/docs/captchas/ComplexImageTask-Recognition)
 - [GeetestRequest](https://docs.capmonster.cloud/docs/captchas/geetest-task)

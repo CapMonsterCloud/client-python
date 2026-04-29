@@ -15,8 +15,8 @@ class RecognitionComplexImageTaskRequest(ComplexImageTaskRequestBase):
         else:
             if not isinstance(value.get('Task'), str):
                 raise TypeError(f'Expect that Task will be str.')
-        if not set(value.keys()).issubset(set(["Task", "TaskArgument"])):
-            raise TypeError(f'Allowed keys for metadata are "Task" and "TaskArgument"')
+        if not set(value.keys()).issubset(set(["Task", "TaskArgument", "PayloadType"])):
+            raise TypeError(f'Allowed keys for metadata are "Task", "TaskArgument" and "PayloadType')
         return value
     
     @validator('imagesBase64')
